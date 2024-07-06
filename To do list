@@ -1,68 +1,73 @@
-#Task 1 Given by CodSoft
-# python program to creat a todo list
+from tkinter import*
+from tkinter import ttk
 
-import tkinter as tk
-from tkinter import simpledialog, messagebox
+class todo:
+def __init__(self,root):
+self.root=root
+self.root.tittle("To-Do-List")
+self.root.geometry("650*410+300+150")
 
-def add_task():
-    global listbox_tasks, entry_task
-    task = entry_task.get()
-    if task:
-        listbox_tasks.insert(tk.END, task)
-        entry_task.delete(0, tk.END)
-    else:
-        messagebox.showwarning("Warning", "Please enter a task.")
+self.label=label(self.root,text="To-Do-List-App",
+font="ariel,25 bold",width=10,bd=5,bg="orange",fg="black")
+self.label.pack(side='top'fill=BOTH)
 
-def delete_task():
-    global listbox_tasks
-    try:
-        index = listbox_tasks.curselection()[0]
-        listbox_tasks.delete(index)
-    except IndexError:
-        messagebox.showwarning("Warning", "Please select a task to delete.")
+self.label2=label(self.root,text="Add task",
+font="ariel,18 bold",width=10,bd=5,bg="orange",fg="black")
+self.label2.place(x=40,y=54)
 
-def edit_task():
-    global listbox_tasks
-    try:
-        index = listbox_tasks.curselection()[0]
-        old_task = listbox_tasks.get(index)
-        new_task = simpledialog.askstring("Edit Task", "Edit the selected task:", initialvalue=old_task)
-        if new_task:
-            listbox_tasks.delete(index)
-            listbox_tasks.insert(index, new_task)
-    except IndexError:
-        messagebox.showwarning("Warning", "Please select a task to edit.")
+self.label4=label(self.root,text="Tasks",
+font="ariel",width=10,bd=5,bg="orange",fg="black")
+self.label3.place(x=320,y=54)
 
-def main():
-    global listbox_tasks, entry_task
-    root = tk.Tk()
-    root.title("Task 1 To-Do List")
+self.main_text=listbox(self.root, height=9,bd=5,width=23,font="ariel, 20 italic bold"):
+self.main_text.place(x=280,y=100)
 
-    frame_tasks = tk.Frame(root)
-    frame_tasks.pack(pady=10)
+self.text=Text(self.root,bd=5,height=2,width=30,font="ariel",10 bold")
+self.text.place(x=20,y=120)
 
-    listbox_tasks = tk.Listbox(frame_tasks, width=50, height=10, selectbackground="green")
-    listbox_tasks.pack(side=tk.LEFT, fill=tk.BOTH)
+#...........addtask.......#
 
-    scrollbar_tasks = tk.Scrollbar(frame_tasks)
-    scrollbar_tasks.pack(side=tk.RIGHT, fill=tk.BOTH)
-
-    listbox_tasks.config(yscrollcommand=scrollbar_tasks.set)
-    scrollbar_tasks.config(command=listbox_tasks.yview)
-
-    entry_task = tk.Entry(root, width=50)
-    entry_task.pack(pady=10)
-
-    button_add_task = tk.Button(root, text="Add Task", command=add_task)
-    button_add_task.pack(side=tk.LEFT, padx=5)
-
-    button_delete_task = tk.Button(root, text="Delete Task", command=delete_task)
-    button_delete_task.pack(side=tk.LEFT, padx=5)
-
-    button_edit_task = tk.Button(root, text="Edit Task", command=edit_task)
-    button_edit_task.pack(side=tk.LEFT, padx=5)
-
-    root.mainloop()
-
-if __name__ == "__main__":
-    main()
+def add():
+  content=self.text.get(1.0,END)
+  self.main_text.insert(END,content)
+  with open("data.txt","a") as file:
+    file.write(content)
+    file.seek(0)
+    file.close()
+    self.text.delete(1.0,END)
+    
+    def.delete():
+      delete_=self.main_text.curselection
+      look=self.main_text.get(delete_)
+      with open("data.txt","r+") as f:
+        new_f=f.readlined()
+        f.seek(0)
+        for line in new_f:
+          item=str(100)
+          if item not in line:
+            f.write(line)
+            f.truncate()
+            self.main_text.delete(delete_)
+            
+            with open("data.txt","r")as file:
+              reaf=file.readlines()
+              for i in read:
+                ready=i.split()
+                self.main_txt.insert(END,ready)
+                file.close()
+                
+                self.button=Button(self.root,text="Add",font="sarlf,20 bold italic",width=10,bf=5,bg="orange",
+                fg="black",command=add)
+                self.button.place(x=30,y=100)
+                
+                self.button2=Button(self.root,text="Delete",font=sarif,20 bold italic",
+                width=10,bd=5,bg="orange",fg="black",command=delete)
+                self.button2.place(x=30,y=200)
+                
+                def main():
+                  root=tk()
+                  vi=todo(root)
+                  root.main loop()
+                                    
+                  if_name__ == "__main__":
+                      main()
